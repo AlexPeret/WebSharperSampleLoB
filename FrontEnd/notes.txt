@@ -1,0 +1,5 @@
+﻿Nuget Packages:
+---------------
+Install-Package Microsoft.Owin.Host.SystemWeb
+Install-Package Microsoft.Owin.Security.Cookies
+Install-Package Microsoft.AspNet.Identity.Owin

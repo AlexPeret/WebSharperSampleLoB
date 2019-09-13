@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>359cc58a-5655-4973-b586-109efb3b0e72</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>FrontEnd</RootNamespace>
+    <AssemblyName>FrontEnd</AssemblyName>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F2A71F9B-5D33-465A-A702-920D77279786}</ProjectTypeGuids>
+    <WebSharperProject>Site</WebSharperProject>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Name>FrontEnd</Name>
+    <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <Tailcalls>false</Tailcalls>
+    <OutputPath>bin</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <Tailcalls>true</Tailcalls>
+    <OutputPath>bin</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FSharp.Core">
+      <HintPath>..\packages\FSharp.Core.4.7.0\lib\net45\FSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.11.12\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="HttpMultipartParser">
+      <HintPath>..\packages\WebSharper.Owin.4.5.2.167\lib\net461\HttpMultipartParser.dll</HintPath>
+    </Reference>
+    <Reference Include="IntelliFactory.Xml">
+      <HintPath>..\packages\IntelliFactory.Xml.0.6.64.1\lib\net40\IntelliFactory.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.ValueTuple">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebSharper.Collections">
+      <HintPath>..\packages\WebSharper.4.5.18.348\lib\net461\WebSharper.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.Control">
+      <HintPath>..\packages\WebSharper.4.5.18.348\lib\net461\WebSharper.Control.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.Core">
+      <HintPath>..\packages\WebSharper.4.5.18.348\lib\net461\WebSharper.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.Core.JavaScript">
+      <HintPath>..\packages\WebSharper.4.5.18.348\lib\net461\WebSharper.Core.JavaScript.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.FileDropJs">
+      <HintPath>..\Libs\WebSharper.FileDropJs\WebSharper.FileDropJs.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.Google.Maps">
+      <HintPath>..\packages\WebSharper.Google.Maps.4.5.1.143\lib\net461\WebSharper.Google.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.Html.Client">
+      <HintPath>..\packages\WebSharper.Html.4.5.1.157\lib\net461\WebSharper.Html.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.Html.Server">
+      <HintPath>..\packages\WebSharper.Html.4.5.1.157\lib\net461\WebSharper.Html.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.InterfaceGenerator">
+      <HintPath>..\packages\WebSharper.4.5.18.348\lib\net461\WebSharper.InterfaceGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.JavaScript">
+      <HintPath>..\packages\WebSharper.4.5.18.348\lib\net461\WebSharper.JavaScript.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.JQuery">
+      <HintPath>..\packages\WebSharper.4.5.18.348\lib\net461\WebSharper.JQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.JQueryUI">
+      <HintPath>..\packages\WebSharper.JQueryUI.4.5.1.142\lib\net461\WebSharper.JQueryUI.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.Main">
+      <HintPath>..\packages\WebSharper.4.5.18.348\lib\net461\WebSharper.Main.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.Owin">
+      <HintPath>..\packages\WebSharper.Owin.4.5.2.167\lib\net461\WebSharper.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.Remarkable">
+      <HintPath>..\packages\WebSharper.Remarkable.4.5.2.166\lib\net461\WebSharper.Remarkable.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.Sitelets">
+      <HintPath>..\packages\WebSharper.4.5.18.348\lib\net461\WebSharper.Sitelets.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.Swiper">
+      <HintPath>..\packages\WebSharper.Swiper.4.5.1.164\lib\net461\WebSharper.Swiper.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.UI">
+      <HintPath>..\packages\WebSharper.UI.4.5.12.178\lib\net461\WebSharper.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.UI.Templating">
+      <HintPath>..\packages\WebSharper.UI.4.5.12.178\lib\net461\WebSharper.UI.Templating.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.UI.Templating.Common">
+      <HintPath>..\packages\WebSharper.UI.4.5.12.178\lib\net461\WebSharper.UI.Templating.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.UI.Templating.Runtime">
+      <HintPath>..\packages\WebSharper.UI.4.5.12.178\lib\net461\WebSharper.UI.Templating.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WebSharper.Web">
+      <HintPath>..\packages\WebSharper.4.5.18.348\lib\net461\WebSharper.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dist\css\common.css" />
+    <Content Include="dist\css\kanban.css" />
+    <Content Include="dist\css\slideshowsample.css" />
+    <Content Include="dist\css\listing-with-filters-sample.css" />
+    <Content Include="dist\js\common.js" />
+    <Content Include="templates\Module.LeftMenu.html" />
+    <Content Include="templates\Module.AutoCompleteWidget.html" />
+    <Content Include="templates\Module.SelectBoxWidget.html" />
+    <Content Include="templates\Module.DatepickerWidget.html" />
+    <Content Include="templates\Module.SlideShowSample.html" />
+    <Content Include="templates\Webpart.Attachments.html" />
+    <Content Include="templates\Webpart.UserProfileMenu.html" />
+    <Content Include="templates\Webpart.Notification.html" />
+    <Content Include="templates\Page.Widgets.html" />
+    <Content Include="templates\Page.Alert.html" />
+    <Content Include="templates\Page.Help.html" />
+    <Content Include="templates\Page.FormAuth.html" />
+    <Content Include="templates\Page.ListingWithFilters.html" />
+    <Content Include="templates\Page.ListingWithActions.html" />
+    <Content Include="templates\Page.ClosedForm.html" />
+    <Content Include="templates\Page.OpenForm.html" />
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Config.Resources.fs" />
+    <Compile Include="DTOs.fs" />
+    <Compile Include="Helpers.fs" />
+    <Compile Include="Auth.fs" />
+    <Compile Include="Startup.fs" />
+    <Compile Include="Remoting.fs" />
+    <Compile Include="Client.fs" />
+    <Compile Include="Webpart.LeftMenu.fs" />
+    <Compile Include="Webparts.Attachments.fs" />
+    <Compile Include="Webparts.UserProfile.fs" />
+    <Compile Include="Webparts.Notifications.fs" />
+    <Compile Include="Page.Help.fs" />
+    <Compile Include="Page.AlertWidgets.fs" />
+    <Compile Include="Page.LoadingGifWidgets.fs" />
+    <Compile Include="Page.AutoCompleteWidget.fs" />
+    <Compile Include="Page.DatePickerWidget.fs" />
+    <Compile Include="Page.SelectBoxWidgets.fs" />
+    <Compile Include="Page.BreadcrumbWidgets.fs" />
+    <Compile Include="Page.TabsWidgets.fs" />
+    <Compile Include="Page.GoogleMapsWidget.fs" />
+    <Compile Include="Page.SlideShowWidget.fs" />
+    <Compile Include="Page.ProgressBarWidget.fs" />
+    <Compile Include="Page.AttachmentsSample.fs" />
+    <Compile Include="Page.DateTimeSample.fs" />
+    <Compile Include="Page.Widgets.fs" />
+    <Compile Include="Page.ListingWithFiltersPage.fs" />
+    <Compile Include="Page.ListingWithActionsPage.fs" />
+    <Compile Include="Page.SamplesPage.fs" />
+    <Compile Include="Page.Login.fs" />
+    <Compile Include="Page.RestrictedPage.fs" />
+    <Compile Include="Page.ClosedFormPage.fs" />
+    <Compile Include="Page.OpenFormPage.fs" />
+    <Compile Include="Main.fs" />
+    <Content Include="Global.asax" />
+    <Compile Include="Global.asax.fs" />
+    <Content Include="Web.config" />
+    <None Include="packages.config" />
+    <None Include="wsconfig.json" />
+    <Content Include="Main.html" />
+    <Content Include="docs.txt" />
+    <Content Include="notes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Components\Components.fsproj">
+      <Name>Components</Name>
+      <Project>{dbe7c6d3-e71b-48fc-9961-511b3c18101c}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Target Name="IncludeContent" BeforeTargets="Compile">
+    <ItemGroup>
+      <Content Include="Content/**/*.*" />
+      <Content Include="Scripts/**/*.*" />
+    </ItemGroup>
+  </Target>
+  <PropertyGroup>
+    <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '11.0'">
+      <PropertyGroup Condition=" '$(FSharpTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets') ">
+        <FSharpTargetsPath>$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets</FSharpTargetsPath>
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup Condition=" '$(FSharpTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.FSharp.Targets') ">
+        <FSharpTargetsPath>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.FSharp.Targets</FSharpTargetsPath>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
+  <Import Project="$(FSharpTargetsPath)" />
+  <!-- Web targets -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties Guid="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>61144</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:61144/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties Guid="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>True</EnableENC>
+          <AlwaysStartWebServerOnDebug>True</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\WebSharper.FSharp.4.5.18.348\build\WebSharper.FSharp.targets" Condition="Exists('..\packages\WebSharper.FSharp.4.5.18.348\build\WebSharper.FSharp.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este projeto faz referência a pacotes do NuGet que não estão presentes neste computador. Use a Restauração de Pacotes do NuGet para baixá-los.  Para obter mais informações, consulte http://go.microsoft.com/fwlink/?LinkID=322105. O arquivo ausente é {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\WebSharper.FSharp.4.5.18.348\build\WebSharper.FSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\WebSharper.FSharp.4.5.18.348\build\WebSharper.FSharp.targets'))" />
+  </Target>
+</Project>

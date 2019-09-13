@@ -1,0 +1,592 @@
+﻿## Form Widgets
+Widgets frequently used at forms with support to reactive variables.
+
+### Datepicker
+Binds the DatePicker component (jQueryUI) to WebSharper.UI
+
+This control binds the DatePicker component (jQueryUI) to WebSharper.UI's reactive variable.
+
+
+1. **Remarks**
+this component syncs a date typed in a input box withh the visual calender.
+
+The component provides a reactive variable holding the typed value fron the input box, which is encapsulated into the MaybeDate type. The MaybeDate type provides states for valid and invalid date.
+
+If you want internationalization (I18N) support, setup the display date format property (DateFormat) at the DatepickerConfiguration object (jQuery) and specialize the Resource for your language at Config.Resources.fs file. Below, you find an exemple for Brazilian Portuguese language. 
+
+` assembly:Require(typeof<JQueryUIDatePickerPtBr.Js>); `
+
+
+2. **API**
+**Types**
+- MaybeDate
+record type holding a valid(DateTime option) or invalid date. When the typed date is invalid, it is provided as string.
+
+**Functions**
+- CreateMaybeDate : dateO:DateTime option -> MaybeDate
+  Returns a probable valid date
+
+- DatePickerInput: rv:Var<MaybeDate> -> config:DatepickerConfiguration -> Doc
+  This function creates the input box (Doc) element and the DatePicker widget attached to it.
+
+
+3. **Example**
+
+```
+	let config =
+	DatepickerConfiguration(
+		DateFormat = "dd/mm/yy",
+		ChangeMonth = true,
+		ChangeYear = true,
+		AutoSize = true
+	)
+
+	let rvDate = Var.Create <| CreateMaybeDate None
+	let datePickerDoc  = 
+		DatePickerInput rvDate config
+```
+
+
+### SelectBoxInput Widget
+
+Encapsulates the logic to render a input select field with reative variables.
+
+1. **Remarks**
+
+The widget receives two parameters for the initial list of items and the selected one and returns theirs counterparts as reactive variables, which can be used later to refresh the listing and change the selected item.
+
+2. **API**
+**Types**
+- SelectItem<'a>:
+represents an item as a key/value pair.
+
+**Functions**
+- SelectBoxInput : cssClass:string -> rvSelectedOption:Var<SelectItem<'a>> -> rvOptions:Var<SelectItem<'a> list> -> Doc
+
+Returns a tuple with 3 items: 1) a Var representing the selected item; 2) a Var representing the list of items, and 3) to Doc element.
+Returns the Doc element containing a select input field and the embedview responsible for dynamically change its options.
+
+3. **Example**
+
+```
+...
+	let options = 
+		[
+			mapToSelectItem (1,"Option1")
+			mapToSelectItem (2,"Option2")
+		]
+	let option = options.Item 1
+
+	let rvOption = Var.Create option
+	let rvListOptions = Var.Create options
+	let elem = 
+		SelectBoxInput "" rvOption rvListOptions
+...
+```
+
+
+### AutoCompleteInput Widget
+
+1. **Remarks**
+
+The widget binds a reactive variable to Autocomplete control from jQueryUI
+
+2. **API**
+**Types**
+* AutoCompleteItem<'a>
+represents an item as a key/value pair.
+
+* AutoCompleteInputConfig
+this structure is used to setup de widget. Members are
+  
+  - Callback = Unchecked.defaultof<string -> Async<AutoCompleteItem list>> with get, set: 
+A callback delegate to load the data asynchronously
+
+  - CssClass:string
+The css class name applied to the input field. Default: "form-control"
+
+  - DomID:string
+Provides an unique DOM Id to the input box
+
+  - Placeholder = "" with get, set
+Used to set an option Placeholder
+
+  - MinLength = 2 with get, set
+Triggers the callback after MinLength number of characters has been typed.
+
+**Functions**
+- AutoCompleteInput : rvItem: Var<AutoCompleteItem<'a>> -> config:AutoCompleteInputConfig -> Doc
+This widget receives the a reactive variable containing the initial value for the input field, which is update dynamically whenever the user selects an item from the list options.
+
+The list of values must be loaded through the Callback delegate at the config parameter.
+
+Returns the Doc element with associated jQueryUI Javascript code.
+
+3. **Example**
+
+```
+	let ListOfFruits () = 
+		async {
+			return [ "apple"; "..." ]
+		}
+...
+	
+
+	let config = 
+		new AutoCompleteInput.AutoCompleteInputConfig(
+			Callback = ListOfFruits,
+			DomID = "fruit",
+			Placeholder = "options: apple,avocado,banana,blackberry,blueberry,cherry,pear,pineapple",
+			MinLength = 0
+		)
+	let rvValue = Var.Create { Key = ""; Value = "" }
+	let widgetDoc = 
+		AutoCompleteInput rvValue config
+...
+```
+
+## Widgets and sample pages for Displaying Data
+Useful samples show how to implement visual components for data displaying.
+
+### Slide Show Sample
+this is an implementation of slide show using Swiper WebSharper's extension.
+
+This sample implements several features like full screen, thumbnails caroussel and provides support for desktop and mobile devices.
+
+1. **Remarks**
+The slide show is built using two Swiper instances, which are call in an afterRender event, due the nature of WebSharper's template engine and client function - the Javascript code is executed by the client function, but the Doc elements are only added to the DOM after its return.
+
+Both caroussels are tied to keep them synch emulating the thumbnail caroussel effect.
+
+By double clicking an image, the main caroussel is displayed in fullscreen/kiosk mode.
+
+Most of the caroussel layout are set through CSS.
+
+**CSS file**
+A css file is injected into the main template from a resource file using the Require attribute. Refers to Config.Resources.fs to find its implementation.
+
+2. **API**
+**Types**
+N/A
+
+**Functions**
+N/A
+
+3. **Example**
+Refers to the SlideShow Sample page code.
+
+
+### Google Maps Sample
+A simple page showing how to use the Google Maps extension
+
+1. **Remarks**
+the usage is very straighforward. Just setupt the config structure and create a instance of Map.
+
+The important point here is to remember to run the code after the main function has been executed. This is necessary due how the _client_ function works, as explained in a previous section.
+
+2. **API**
+**Types**
+N/A
+
+**Functions**
+N/A
+
+3. **Example**
+Checkout the sample page code.
+
+### Menu - Sitelets Only
+The sitelets only menu is a navigation solution for a Sitelets (server side) application.
+
+This menu makes use of routes (at server side) to provide links/URLs for navigation. The UI layer uses Bootstrap to render the UI component.
+
+To add a new menu item, three locations in the application must be changed: Main.fs ,Webpart.LeftMenu.fs e Config.Resources.fs.
+
+1. **Remarks**
+Para adicionar um item no menu estático, é necessário:
+1. add a new endpoint (Config.Resources.fs)
+2. add the new endpoint to the multipage's pattern match, at the Main.fs
+3. add a new menu item for this endpoint, at WebPart.LeftMenu.fs
+
+2. **API**
+**Types**
+* EndPoint (Config.Resources.fs)
+Um discriminated union usado para definir as rotas. Cada rota pode ser marcado com o atributo EndPoint. Consulte a documentação do WebSharper para opções de configuração deste atributo.
+
+**Functions**
+* MenuItem (Webpart.LeftMenu)
+Cria um novo item de menu. A função aceita uma lista de submenus. 
+
+Para montar um novo item de submenu, utilize uma tupla onde o primeiro elemento é a rota e o segundo o Label a ser exibido no submenu.
+
+* Application.MultiPage (Main function at Main.fs)
+this function is used in the application entry point to deal with the EndPoints defined above.
+
+Application.MultiPage is an alias to Sitelets.Infer function.
+
+3. **Example**
+Checkout the code at the sample pages (Main.fs, Webpart.LeftMenu.fs e Config.Resources.fs).
+
+### Menu - Server and Client side
+An alternative solution to build a menu that can run on both server and client sides is to make use of an Router object.
+
+This sample application is using it as preferred solution.
+
+1. **Remarks**
+The main difference between this solution and the Sitelets-only one relies on the use of the Router object and the __Sitelets.New__ function, instead of only Endpoint and Application.Multipage function.
+
+With the Router object, it's possible to create routes that can be handle by the server side, similarly to the original solution.
+
+For the client side, the Router object provides a function that returns a reactive variable use to handle the routing feature.
+
+Notice the server/client side option must be tag with the [<JavaScript>] attribute.
+
+**Adding a new Endpoint**
+When adding a new endpoint to the application, one must follow these steps:
+1. create a new endpoint option in the EndPoint type (Config.Resourse.fs)
+2. locate the SiteRouter value and 
+2.1. add the endpoint to both the bijection functions __link__ and __route__
+2.2. make sure you are handling the querystrings as required
+3. locate the InstallRouter function and add a case for endpoints that must be ignore by the client side router. To do that, find the ClientServer option and add the endpoint to the slice function case list.
+4. add a new menu item for this endpoint, at WebPart.LeftMenu.fs
+5. at the Main.fs
+5.1. locate the PageTitle function and add a case for the new endpoint
+5.2. locate the RouteClientPage function and add a case for the new endpoint
+5.3. locate the Main value and add a case for the new endpoint
+
+2. **API**
+**Types**
+- EndPoint
+the discriminated union type containing all application's endpoint
+
+- RouteType = ServerOnly | ClientServer
+Used by the InstallRouter to select the routing behavior for testing. This might not be required in your project. It is used for illustration purpose only.
+
+**Functions**
+- InstallRouter (Config.Resources.fs)
+creates the router object used by the application. 
+
+This function returns a reactive variable used for client side routing. For Sitelets (server) only sample, pass ServerOnly option as parameter to turn off the client side router behavior.
+
+- SiteRouter (Config.Resources.fs)
+although not exactly a function, this value works as a singleton for the entire applicaction router.
+
+It is using a bijective function for the routing table and you are responsible for setting it up. It also supports querystrings.
+
+- RouteClientPage (Main.fs)
+Handles the client side routing options.
+
+- Main (Main.fs)
+Handles both the client and server side routing options, by segmenting them
+
+3. **Example**
+Refers to the Config.Resources.fs, Webpart.LeftMenu.fs and Main.fs to find out the implementation.
+
+
+### Breadcrumb
+Generates a webcrump component from a list.A list of data is passed, and from this, a Breadcrumb is generated.
+There isn't reactive control (reactive variable)
+A breadcrumb  trail is a graphical control element used as a navigational aid in user interfaces and on web pages.
+**Types**
+We have an type ActionType,consisting of a Path and a Callback
+In the second type we have an NavItem type, consisting of a label and Action
+A discriminated union used to define the routes. Each route can be marked with the EndPoint attribute. See the WebSharper documentation for configuration options for this attribute.
+
+**Functions**
+The function receives a list of NavItems.The BreadCrumb item can be a JavaScript path or function.
+* Operation
+
+** mark comments**
+"Blind" Connects a reactive variable to an autocomplete control
+
+3. **Example**
+Checkout the code at the sample pages (Breadcrumb.fs) or consult  the bibliography.
+
+### Tabs
+Takes the basic nav from above and adds the .nav-tabs class to generate a tabbed interface. 
+Used them to create tabbable regions with tab JavaScript plugin and Components.Nav.Tab
+**Types**
+
+**Functions**
+There is a main function called as unit(unit -> unit), with an internal function tabs
+There is inside the function tab, the calls of the elements that will construct the page tabs.
+-Label
+-Action
+-IsActive
+
+**Example**
+```
+	        {
+            Label = "Tab number" 
+            Action = Path or Callback used
+            IsActive = true or false
+            }
+```
+
+### Progress Bar
+This is a simple progress bar component using a reactive variable to show the progress.
+
+The progress bar range is tied to the width range, varying from 0% to 100% (float).
+
+Unlike other widgets from this project, this one won't return the reactive variable, but provide a function for updating it's content.
+
+**Types**
+N/A
+
+**Functions**
+- Restart: unit -> unit
+reset the progress bar value and turns the widget visible.
+
+- Hide: unit -> unit
+turns the widget hidden. It also resets the underlying progress bar value.
+
+- Step: width:float -> unit
+updates the progress bar by the width.
+
+- ProgressBar: unit -> Doc
+the entry point function. It builds the widget and returns it as a Doc object.
+
+**Example**
+```
+...
+	let progressBar = ProgressBarT()
+	let progressBarDoc = progressBar.ProgressBar()
+	
+	let steps = [0. .. 10. .. 100.]
+
+	steps
+	|> List.iter(fun step ->
+		progressBar.Step(step)
+		progressBar.Hide()
+	)
+...
+```
+
+
+
+### Listing with Filters Sample
+a listing page with filters. 
+
+Changing the filter values also changes the URL parameters and reload the page content.
+
+1. **Remarks**
+The Main function receives a set o parameters originated from URL querystring parameters.
+
+The filter box is set up with default data load from the server and synchronized with the parameters values.
+
+The sample uses inner templates to render both the filter box and the list of items.
+
+**Filter box**
+The filter box illustrate how to use plain input fields among some widgets from this project.
+
+All fields trigger the change event to update the querystring parameters' values and reload the page to apply the new filter to the listing.
+
+The page reload is done using the go function, a function containing the client router responsible for redirecting to the endpoint provided as parameter.
+
+2. **API**
+**Types**
+-Parameters: record type containing filter options from router.
+
+**Functions**
+N/A
+
+There a few internal functions to help build the page content.
+
+3. **Example**
+Refers to the Listing with Filters Sample page code.
+
+### Alert message on screen 
+Creates on-screen display using Alert Styles
+We have in the model 4 types of alert:
+| Success 
+| Info 
+| Warning 
+| Danger 
+
+
+1. **Remarks**
+the component generates an element (Doc) that is controlled by a reactive variable. 
+The reactive variable contains the message type (color in the bootstrap) and the message to be displayed. In case of error, the message is a message list.
+There is also an AlertResult (helper) function that maps a Result to an Alert
+2. **API**
+**Types**
+MapColorClass:is used to set the message panel color type and contains the message to be displayed
+    let private MapColorClass color = 
+         match color with
+         | Success _ -> "alert-success"
+         | Info _ -> "alert-info"
+         | Warning _ -> "alert-warning"
+         | Danger _ -> "alert-danger"
+**Functions**
+There is a main function called as alert with resultVar<Result<string,string list>>, and returns a DOC
+There is a other function , called AlertResult,whit resultVar<Result<string,string list>>, and returns a DOC
+    let Alert (colorMessage:Var<AlertStyles>) =
+
+    let AlertResult (result:Var<Result<string,string list>>) =
+
+3. **Example**
+
+        let rvAlert = Var.Create (Success "")
+        let alertElem = Alert rvAlert
+
+4. ** Updates / New Requirements: **
+  New requirements:
+- allow to hide the element, for scenarios where the
+ element is added to the page, but is not used
+- make the dynamic message type (color) configuration
+- make the message dynamic
+- the message must support a string list or a string
+
+
+### Loading gif item
+Load / Provide a "loading" component of the gif type on the screen
+
+1. **Remarks**
+
+2. **API**
+**Types**
+N/A
+
+3. **Example**
+The following functions are responsible for the re-sorting of the item
+
+    let LoadingGifFull (rShow:Var<bool>) =
+        Render rShow "animationload-fullscreen"
+          
+    let LoadingGif (rShow:Var<bool>) =
+        Render rShow "animationload"
+
+    output:
+        <div class="animationload">
+        <div class="osahanloading"></div>
+        </div>
+
+**Functions**
+cnt Function: Allows the insertion of gif of the conventional way or FullScreen
+Main go function: creates the reactive variable
+
+        let rShowGif = Var.Create false
+        let rShowGifFullScreen = Var.Create false
+
+        let cnt = 
+            [
+                LoadingGif rShowGif
+                LoadingGifFull rShowGifFullScreen
+            ] 
+
+### Notification on screen
+Creates messages in the upper right corner of the screen alerting the user, 
+containing the alert message, and the time when such a message was received
+
+1. **Remarks**
+**Routine:**
+-Map each list item to the inner template Notification
+replaces
+-Inserts the doc list resulting from the mapping in the hole notifications.
+-Returns the entire template
+
+
+2. **API**
+**Types**
+N/A
+
+**Functions**
+Run: unit->Doc
+items val items:Doc
+-Creates an RPC function
+-Uses a reactive variable with an empty list
+-Opens an asynchronous block
+
+3. **Example**
+within the asynchronous block
+- we call the function used let!
+- We assign the list of notifications to the reactive variable (var.set)
+We've mapped the list of notifications within a View.map | Doc.Embed
+   vNotifications.View
+   |> View.Map (fun notifications ->
+      ... and here we have the current mapping
+
+```
+    let Run () = 
+        let rvNotifications = 
+            Var.Create []
+```
+```
+	asynchronous block
+			 async {
+			 }
+			 |> Async.Start
+```
+
+### Login Sample
+This is an implementation of authentication module, consisting of a login page, logout button (top menu), securing routes/endpoints and using Owin.
+
+The visual part of the authentication module consist of 4 parts:
+- login page: found from the Samples Page menu. Contains a standard login form
+- logout button: found from the my profile menu at the top
+- restricted page: found from the Samples Page menu, it is only accessible after the user is logged at the application
+- access denied page: not present at the menu. It is used to redirect unauthenticated access to the restricted page.
+
+**Securing Endpoints**
+The access control for authenticated/unauthenticated request is done at endpoint level.
+
+It can be extended to support a authorization (by rules or claims), but it must be done manually and this project doesn't implement any.
+
+To add more endpoint under the restricted access area, find the Main value at the Main.fs file, locate the __secureMainTemplate__ inner function and add the new endpoint case.
+
+**How to test it**
+1. Click the __Restricted__ link at the Sample Pages menu. The application must redirect you to the access denied page.
+2. Click the login page link at the Sample Pages menu. Once the form is loaded, get logged using admin/admin for username and password.
+3. Now, try accessing the __Restricted__ page again and the application might show you a welcome greeting.
+4. Click the logout button at the profile menu (at the top) and the application might revoke you authorization again.
+
+**Types**
+N/A
+
+**Functions**
+N/A
+
+**Example**
+- Refer to the following files for authentication configuration: Startup.fs, Auth.fs
+- The access control is done in the Main value, at Main.fs
+- Refer to Page.Login.fs to find an implementation of a standard form authentication.
+
+
+### Closed Form Sample
+This sample shows how to implement a single record form page. This pattern is useful when changing a single data entry results on cascaded changes as an atomic transaction.
+
+Although the sample uses a single function for saving data, one can easily change where to save model/data.
+
+1. **Remarks**
+Each entry point has 2 states: visual/readonly and editable. The former has a edit link button responsible to toggle the state to editable.
+
+The editable state has 2 buttons, one for cancelling all changes and toggling it back to visual state and another to save the data by calling a callback function.
+
+In order to minimize the number of parameters, there is a PageModel type used to store all field states and values.
+
+**How to add a new field**
+Adding a new field requires the following changes:
+- update the PageModel type: 
+  - add the new attribute representing the value of this new field. Add
+  - add the ShowFieldName:bool attribute for controlling the field state (visual|editable)
+- at the Main function:
+  - provide the initial value for these new two attributes at the rvPageModel creation
+  - create a new var from lensing the new attribute used to keep the field's value
+  - update the inner function __modelToForm__
+  - create the component field and add it to the list of fields (__formFields__ list)
+- create a build function for the new component
+  - refer to other functions used to create the field components.
+
+2. **API**
+**Types**
+- PageModel:
+a record type containing the model loaded from the server, and copy of such model for cancelling operations and for each field, a pair of attributes for controlling the field state (visual/editable) and it current value.
+
+- PageStatus:
+this structure contains callbacks for functions used to display processing status on the page, like loading gif.
+
+**Functions**
+- private BuildField : rvShowField:Var<bool> -> readonlyContent:Doc -> editableContent:Doc -> OnCancelCallback:(TemplateEvent -> Unit) -> OnSaveCallback:(TemplateEvent -> Unit) -> OnEditCallback:(TemplateEvent -> Unit) -> doc 
+this is a helper function for creating a new field.
+
+3. **Example**
+Refer to the page source code.

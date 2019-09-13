@@ -1,0 +1,36 @@
+﻿<div ws-children-template="Main">
+    <div class="row">
+        <div class="col-xs-12" ws-hole="ProgressBar"></div>
+
+        <div class="form-group col-sm-12">
+            <label>Select a file</label>
+            <div class="" id="uploadWidget"></div>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody ws-hole="FileList" ws-children-template="FileRow">
+                <tr>
+                    <td><i class="fa ${IconClassName}"></i></td>
+                    <td><span ws-hole="Name"></span></td>
+                    <td>${CreateDate}</td>
+                    <td>
+                        <a href="javascript:void(0)" ws-onclick="Remove">remove</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

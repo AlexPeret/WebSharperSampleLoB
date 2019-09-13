@@ -1,0 +1,28 @@
+﻿<h3>Closed Form Sample</h3>
+
+<div class="pull-right loading-gif-small mr-15">
+    <div ws-replace="StatusLoading"></div>
+</div>
+<div ws-replace="StatusMsg"></div>
+
+<div class="panel">
+    <div class="panel-head">Form data</div>
+    <div class="panel-body">
+        <ul class="list-group list-group-flush" ws-hole="Fields">
+            <li class="list-group-item" ws-template="ReadonlyField">
+                <div ws-replace="ReadonlyContent"></div>
+                <span class="float-right">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <a class="btn btn-link" ws-onclick="OnEdit">Edit</a>
+                </span>
+            </li>
+            <li class="list-group-item" ws-template="EditField">
+                <div ws-replace="EditContent"></div>
+                <div class="">
+                    <button class="btn btn-primary" type="button" ws-onclick="OnSave">Save</button>
+                    <button class="btn btn-default" type="button" ws-onclick="OnCancel">Cancel</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

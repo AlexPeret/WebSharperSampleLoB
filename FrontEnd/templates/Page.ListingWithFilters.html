@@ -1,0 +1,92 @@
+﻿<div class="row">
+    <!--filter-->
+    <div class="col-sm-3" ws-hole="FilterBox">
+        <nav class="navbar navbar-default" ws-template="FilterBoxTemplate">
+            <form>
+                <div id="filter-options" class="collapse navbar-collapse">
+                    <button type="button" class="hidden-lg" data-toggle="collapse" data-target="#filter-options" aria-expanded="false"><span aria-hidden="true">&times;</span></button>
+                    <label class="hidden-lg">Edit filters</label>
+
+                    <fieldset class="">
+
+                        <div class="form-group">
+                            <label class="" for="location">Location</label>
+                            <!--<input id="location" type="text" placeholder="Type a location" class="form-control" autocomplete="off" ws-var="Location" ws-onchange="OnLocationChange" />-->
+                            <input id="location" type="text" placeholder="Type a location" class="form-control" autocomplete="off" ws-replace="LocationComponent" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="" for="main-options">Main Options</label>
+                            <select id="main-options" class="form-control" ws-replace="MainOptionsSelectBox">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Number of options</label>
+                            <div class="btn-group" role="group" aria-label="number of options" ws-replace="NumberOfOptionsGroupButtons">
+                                <button type="button" data-value="1" class="btn btn-circle">1+</button>
+                                <button type="button" data-value="2" class="btn btn-circle active">2+</button>
+                                <button type="button" data-value="3" class="btn btn-circle">3+</button>
+                                <button type="button" data-value="4" class="btn btn-circle">4+</button>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="" for="min-price">Minimum</label>
+                                    <input type="text" class="form-control" id="min-price" maxlength="10" ws-var="MinimumPrice" ws-onchange="OnMinimumPriceChange" />
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label class="" for="max-prive">Maximum</label>
+                                    <input type="text" class="form-control" id="max-price" maxlength="10" ws-var="MaximumPrice" ws-onchange="OnMaximumPriceChange" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#filter-options" aria-expanded="false">Show Filters...</button>
+                </div>
+            </form>
+        </nav>
+    </div><!--/filter-->
+    <!--listing-->
+    <div class="col-lg-9" ws-hole="Items">
+        <div class="panel panel-default" ws-template="Item">
+            <div class="row">
+
+                <div class="col-sm-5" ws-hole="Images">
+
+                    <div class="swiper-container item-images" ws-template="Carrousel">
+                        <div class="swiper-wrapper" ws-hole="CarrouselItems">
+                            <div ws-template="CarrouselItem" class="swiper-slide" style="background-image:url(${ImagePath})"></div>
+                        </div>
+                        <!-- Add Arrows -->
+                        <div class="swiper-button-next swiper-button-white"></div>
+                        <div class="swiper-button-prev swiper-button-white"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-7">
+                    <h2>${Title}</h2>
+                    <span>${Subtitle}</span>
+                    <div>${Description}</div>
+                    <span>${Price}</span>
+                    <button type="button" class="btn-link btn-warning" ws-onclick="MoreInfoOnClick">See more</button>
+                </div>
+            </div>
+
+        </div>
+    </div><!--/listing-->
+</div>

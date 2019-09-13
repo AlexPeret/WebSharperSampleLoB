@@ -1,0 +1,4 @@
+* .NET version
+Using .NET Framework because there is not .NETStandard (v2) lib for Intellifactory.Xml component. See previous warning below:
+
+warning NU1701: O pacote 'IntelliFactory.Xml 0.6.64.1' foi restaurado usando '.NETFramework,Version=v4.6.1' em vez da estrutura de destino do projeto '.NETStandard,Version=v2.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.

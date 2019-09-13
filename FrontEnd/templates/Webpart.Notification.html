@@ -1,0 +1,28 @@
+﻿ <!-- Notification Components -->
+<li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="true">
+        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+    </a>
+    <ul class="dropdown-menu dropdown-alerts">
+
+        <replacer ws-children-template="Notification" ws-replace="Notifications">
+            <li>
+                <a  ws-attr="LinkAttr">
+                    <div>
+                        <i ws-attr="LinkIconAttr"></i> ${Text}
+                        <span class="pull-right text-muted small">${Time}</span>
+                    </div>
+                </a>
+            </li>
+            <li class="divider"></li>
+        </replacer>
+
+        <li>
+            <a class="text-center" href="#">
+                <strong>See All Alerts</strong>
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+    </ul>
+    <!-- /.dropdown-alerts -->
+</li>

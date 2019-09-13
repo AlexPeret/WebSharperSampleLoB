@@ -1,0 +1,44 @@
+﻿<!--
+    Bootstrap 4: d-none*
+    Bootstrap 3: hidden-*
+-->
+<replace ws-replace="StatusMsg"></replace>
+
+<table class="table table-hover">
+    <thead class="d-none d-sm-table-cell hidden-xs">
+        <tr>
+            <th></th>
+            <th scope="col">Title</th>
+            <th scope="col">Subtitle</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+        </tr>
+    </thead>
+    <tbody ws-hole="Items">
+        <tr ws-template="Item">
+            <th class="d-none d-sm-table-cell hidden-xs" scope="row">
+                <a href="javascript:void(0)" ws-onclick="OnItemClick">action</a>
+            </th>
+            <th class="d-none d-sm-table-cell hidden-xs" scope="row">${Title}</th>
+            <td>
+                <div class="d-none d-sm-table-cell hidden-xs">${Subtitle}</div>
+                <div class="d-block d-sm-none visible-xs-block">
+                    <dl class="row">
+                        <dt class="col-xs-3">Title</dt>
+                        <dd class="col-xs-9">${Title}</dd>
+                        <dt class="col-xs-3">Subtitle</dt>
+                        <dd class="col-xs-9">${Subtitle}</dd>
+                        <dt class="col-xs-3">Description</dt>
+                        <dd class="col-xs-9">${Description}</dd>
+                        <dt class="col-xs-3">Price</dt>
+                        <dd class="col-xs-9">${Price}</dd>
+                    </dl>
+                    <a href="javascript:void(0)" ws-onclick="OnItemClick">action</a>
+                </div>
+
+            </td>
+            <td class="d-none d-sm-table-cell hidden-xs">${Description}</td>
+            <td class="d-none d-sm-table-cell hidden-xs">${Price}</td>
+        </tr>
+    </tbody>
+</table>

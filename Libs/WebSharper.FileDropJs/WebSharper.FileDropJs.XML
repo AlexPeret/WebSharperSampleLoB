@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>WebSharper.FileDropJs</name>
+  </assembly>
+  <member name="M:WebSharper.FileDropJs.FileDrop.EventFiles(System.String)">
+    <summary>Retrieves File objects from an on-drop event. Returns a FileList array-like object (not W3C FileList). If orFalse is unset always returns a FileList even if event e was invalid, otherwise returns false in such occurrences instead of empty FileList.</summary>
+  </member>
+  <member name="P:WebSharper.FileDropJs.FileDrop.Handle">
+    <summary>Underlying DropHandle instance providing browser-independent handlers for drag &amp; drop and &lt;iframe&gt; upload facility.</summary>
+  </member>
+</doc>

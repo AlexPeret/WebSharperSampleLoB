@@ -1,0 +1,23 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">
+        Form Elements
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6">
+
+                <form role="form">
+                    <div class="form-group" ws-hole="Content1"></div>
+
+                    <div class="form-group" ws-hole="Content2" ws-children-template="WidgetTemplate">
+                        <label>SelectBox Reactive Input</label>
+                        <select class="form-control" ws-replace="Widget"></select>
+                        <p class="help-block">SelectBox widget bound to a WebSharper UI reactive variable.</p>
+                        <p class="help-block">${WidgetState1}</p>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

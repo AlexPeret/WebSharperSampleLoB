@@ -1,0 +1,55 @@
+/** {
+    border-radius: 0 !important;
+}
+
+.panel-heading {
+    font-size: 20px;
+    font-weight: bolder;
+}*/
+
+.kanban .panelspace {
+    padding-bottom: 5px;
+}
+
+.kanban .trash {
+    color: rgb(209, 91, 71);
+}
+
+.kanban .flag {
+    color: rgb(248, 148, 6);
+}
+
+.kanban .panel-body {
+    padding: 0px;
+}
+
+.kanban .panel-footer .pagination {
+    margin: 0;
+}
+
+.kanban .panel .glyphicon, .kanban .list-group-item .glyphicon {
+    margin-right: 5px;
+}
+
+.kanban .panel-body .radio, .kanban .checkbox {
+    display: inline-block;
+    /*/*margin: 0px;*/ */
+}
+
+.kanban .panel-body input[type=checkbox]:checked + label {
+    text-decoration: line-through;
+    color: rgb(128, 144, 160);
+}
+
+.kanban .list-group-item:hover, .kanban a.list-group-item:focus {
+    text-decoration: none;
+    background-color: rgb(245, 245, 245);
+}
+
+.kanban .list-group {
+    margin-bottom: 0px;
+}
+
+.kanban .checkbox input[type=checkbox], .kanban .checkbox-inline input[type=checkbox], .kanban .radio input[type=radio], .kanban .radio-inline input[type=radio] {
+    margin-left: 0px;
+}
