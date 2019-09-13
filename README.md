@@ -19,3 +19,10 @@ The datepicker widget doesn't support internationalization properly (date format
 ## Notes
 1. I'm using an extension for FileDrop.js in this project, which doesn't have a Nuget Package yet. I'm providing the assembly for it, but you can find the source code at [its repository](https://github.com/AlexPeret/WebSharper.FileDrop.js).
 2. LoB stands for Line of Business and the samples are frequent widgets we find on this sort of application.
+
+## Troubleshooting
+If you face the following error message after loading the solution on Visual Studio, repairing Nuget packages, restarting VS and rebuilding the solution fix it for me:
+
+`Failed to find WebSharper Sitelet definition. Add one in a WebSharper-translated assembly or do not load WebSharper.Sitelets.HttpModule`
+
+Also, if you update WebSharper packages, you might need to download the WebSharper.FileDrop.js project (see above), update its packages and add the reference to it.
